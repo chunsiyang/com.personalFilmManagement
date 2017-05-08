@@ -1,5 +1,6 @@
 package com.personalFilmManagement;
 
+import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,7 +24,9 @@ public class Main {
 		//lm=Requestprocesser.orderBy(new OrderBy(OrderType.ASC,"ENGname"));
 		//lm.forEach(System.out::println);
 		Requestprocesser.autoInstertDirectory("C:\\Users\\user\\Desktop\\sd");
-
+		LinkedList<Movie> outSet;
+		outSet=Requestprocesser.orderBy(new OrderBy(OrderType.ASC,"ENGname"));
+		outSet.forEach(System.out::println);
 	}
 
 }

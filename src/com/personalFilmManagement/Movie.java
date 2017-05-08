@@ -33,10 +33,11 @@ public class Movie {
 	}
 	@Override
 	public String toString() {
-		// TODO 自动生成的方法存根
-		return ENGname+CHSname+releaseDate+physicalAddress
-				+resolution.name()+compressionScheme.name()+
-				videoCoding.name()+audioCoding.name();
+		return "ENGname:"+ENGname+"\nCHSname:"+CHSname+"\nrelaseDate:"+
+				releaseDate+"\nphysicalAddress:"+physicalAddress
+				+"\nresolution:"+resolution.name()+"\ncompressionScheme:"
+				+compressionScheme.name()+"\nvideoName:"+
+				videoCoding.name()+"\naudioCodeing:"+audioCoding.name()+"\n";
 	}
 	public String getENGname() {
 		return ENGname;
