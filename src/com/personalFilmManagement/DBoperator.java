@@ -18,7 +18,7 @@ public class DBoperator {
 	    String username = "root";
 	    String password = "";
 	    try {
-	        Class.forName(driver); //classLoader,加载数据库驱动
+	        Class.forName(driver); //classLoader,加载数据库驱动.
 	        conn = (Connection) DriverManager.getConnection(url, username, password);
 	    } catch (ClassNotFoundException e) {
 	        //e.printStackTrace();
