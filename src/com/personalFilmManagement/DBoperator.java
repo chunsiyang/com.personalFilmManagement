@@ -7,7 +7,12 @@ import java.util.LinkedList;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
-
+/**
+ * 
+ * @author chunsiyang
+ * 
+ *
+ */
 public class DBoperator {
 	private static Connection conn=null;
 	private static String table ="personalfilmmanagement.movie";
@@ -29,6 +34,10 @@ public class DBoperator {
 	    }
 	    return true;
 	}//end getConn()
+	/**
+	 * close JDBC connection
+	 * @return if connection is close return true
+	 */
 	private static boolean closeConn(){
 		
 		try {
@@ -39,6 +48,12 @@ public class DBoperator {
 		}
 		return true;
 	}
+	/**
+	 * 
+	 * @param m Insert Movie
+	 * @param where Functional interface return SQL Sentence where 
+	 * @return return influence line
+	 */
 	public static int update(Movie m, Whereable where) {
 	    connect();
 	    int influenceLine = 0;//影响的行数
@@ -109,7 +124,12 @@ public class DBoperator {
 	    }
 	    return influenceLine;
 	}//end update()
-	
+	/**
+	 * 
+	 * @param m Insert Movie
+	 * @return	return influence line
+	 * @throws Exception 
+	 */
 	public static int insert(Movie m) throws Exception{
 	    connect();
 	    int influenceLine = 0;
@@ -152,7 +172,13 @@ public class DBoperator {
 	    }
 	    return influenceLine;
 	}//end insert()
-	
+	/**
+	 * 
+	 * @param s Functional interface return SQL Sentence select
+	 * @param w Functional interface return SQL Sentence where
+	 * @param ob	object OrderBy SQL Sentence order by
+	 * @return LinkedList<Moive> return the result of select
+	 */
 	public static LinkedList<Movie> select(Selectable s,Whereable w,OrderBy ob){
 		LinkedList<Movie> result=new LinkedList<>();
 		ResultSet resSet;

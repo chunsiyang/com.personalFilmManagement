@@ -8,6 +8,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Requestprocesser {
+	/**
+	 * 
+	 * @param name search movie information
+	 * @return	result of search
+	 */
 	public static Movie search(String name){
 		Movie m;
 		Pattern pStr;
@@ -15,7 +20,7 @@ public class Requestprocesser {
 		String regexpN="[\u0391-\uFFE50-9]+";//识别中文的正则表达式
 		//确认输入的电影名为中文或是英文
 		pStr=Pattern.compile(regexpN);
-		mStr=pStr.matcher(name);
+		mStr=pStr.matcher(name); 
 		LinkedList<Movie> res=new LinkedList<>();
 		if(mStr.find())
 			res=DBoperator.select(()->"*", ()->"CHSname=\""+name+"\"", null);
@@ -28,7 +33,11 @@ public class Requestprocesser {
 			return null;
 		return m;
 	}
-
+	/**
+	 * 
+	 * @param url address of insert path
+	 * @return	insert success or not
+	 */
 	public static boolean autoInsertPath(String url)
 	{
 		Movie m=new Movie();
@@ -127,6 +136,11 @@ public class Requestprocesser {
 		return true;
 		
 	}
+	/**
+	 * 
+	 * @param url address of insert directory path
+	 * @return a set of can not insert item
+	 */
 	public static  HashSet<String> autoInstertDirectory(String url)
 	{
 		HashSet<String> tstr;	//待文件目录集合
@@ -147,6 +161,18 @@ public class Requestprocesser {
 			return null;
 		return fstr;
 	}
+	/**
+	 * 
+	 * @param eNGname 
+	 * @param cHSname
+	 * @param releaseDate
+	 * @param physicalAddress
+	 * @param resolution
+	 * @param compressionScheme
+	 * @param videoCoding
+	 * @param audioCoding
+	 * @return
+	 */
 	public static boolean manualInsertion(String eNGname, String cHSname,
 			String releaseDate, String physicalAddress, Resolution resolution,
 			CompressionScheme compressionScheme, VideoCoding 
@@ -165,6 +191,18 @@ public class Requestprocesser {
 		return true;
 		
 	}
+	/**
+	 * 
+	 * @param id	Modified ENGname
+	 * @param eNGname
+	 * @param cHSname
+	 * @param releaseDate
+	 * @param physicalAddress
+	 * @param resolution
+	 * @param compressionScheme
+	 * @param videoCoding
+	 * @param audioCoding
+	 */
 	public static void update(String id,String eNGname, String cHSname,
 			String releaseDate, String physicalAddress, Resolution resolution,
 			CompressionScheme compressionScheme, VideoCoding 
@@ -176,6 +214,11 @@ public class Requestprocesser {
 		DBoperator.update(m,()->"ENGname=\""+id+"\"" );
 
 	}
+	/**
+	 * 
+	 * @param ob object OrderBy SQL Sentence order by
+	 * @return result of order by
+	 */
 	public static LinkedList<Movie> orderBy(OrderBy ob)
 	{
 		return DBoperator.select(()->"*", ()->"", ob);
