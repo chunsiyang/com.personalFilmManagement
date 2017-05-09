@@ -18,10 +18,14 @@ public class Requestprocesser {
 		mStr=pStr.matcher(name);
 		LinkedList<Movie> res=new LinkedList<>();
 		if(mStr.find())
-			res=DBoperator.select(()->"*", ()->"CHSname="+name, null);
+			res=DBoperator.select(()->"*", ()->"CHSname=\""+name+"\"", null);
 		else
-			res=DBoperator.select(()->"*", ()->"ENGname="+name, null);
-		m=res.get(0);
+			res=DBoperator.select(()->"*", ()->"ENGname=\""+name+"\"", null);
+		Iterator<Movie> it=res.iterator();
+		if(it.hasNext())
+			m=it.next();
+		else
+			return null;
 		return m;
 	}
 
@@ -116,9 +120,10 @@ public class Requestprocesser {
 			DBoperator.insert(m);
 		}
 		catch (Exception e){
-			System.out.println("录入失败dir");
+			System.out.println(url+"已存在条目，录入失败");
 			return false;
 		}
+		System.out.println(url+"录入成功");
 		return true;
 		
 	}
@@ -168,7 +173,7 @@ public class Requestprocesser {
 		Movie m=new Movie(eNGname, cHSname, releaseDate,
 				physicalAddress, resolution, compressionScheme,
 				videoCoding, audioCoding);
-		DBoperator.update(m,()->"ENGname=id" );
+		DBoperator.update(m,()->"ENGname=\""+id+"\"" );
 
 	}
 	public static LinkedList<Movie> orderBy(OrderBy ob)
