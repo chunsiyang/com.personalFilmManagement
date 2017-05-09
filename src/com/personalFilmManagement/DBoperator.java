@@ -144,7 +144,7 @@ public class DBoperator {
 	        influenceLine = pstmt.executeUpdate();
 	        pstmt.close();
 	    } catch (SQLException e) {
-	        //e.printStackTrace();
+	        //e.printStackTrace(); 
 	        throw new Exception();
 	    }
 	    finally{
