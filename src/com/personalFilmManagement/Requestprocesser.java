@@ -8,6 +8,22 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Requestprocesser {
+	public static Movie search(String name){
+		Movie m;
+		Pattern pStr;
+		Matcher mStr;
+		String regexpN="[\u0391-\uFFE50-9]+";//识别中文的正则表达式
+		//确认输入的电影名为中文或是英文
+		pStr=Pattern.compile(regexpN);
+		mStr=pStr.matcher(name);
+		LinkedList<Movie> res=new LinkedList<>();
+		if(mStr.find())
+			res=DBoperator.select(()->"*", ()->"CHSname="+name, null);
+		else
+			res=DBoperator.select(()->"*", ()->"ENGname="+name, null);
+		m=res.get(0);
+		return m;
+	}
 
 	public static boolean autoInsertPath(String url)
 	{
