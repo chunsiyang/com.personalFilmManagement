@@ -21,10 +21,10 @@ public class DBoperator {
 	        Class.forName(driver); //classLoader,加载数据库驱动
 	        conn = (Connection) DriverManager.getConnection(url, username, password);
 	    } catch (ClassNotFoundException e) {
-	        e.printStackTrace();
+	        //e.printStackTrace();
 	        return false;
 	    } catch (SQLException e) {
-	        e.printStackTrace();
+	        //e.printStackTrace();
 	        return false;
 	    }
 	    return true;
@@ -34,7 +34,7 @@ public class DBoperator {
 		try {
 			conn.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 		return true;
@@ -144,7 +144,7 @@ public class DBoperator {
 	        influenceLine = pstmt.executeUpdate();
 	        pstmt.close();
 	    } catch (SQLException e) {
-	        e.printStackTrace();
+	        //e.printStackTrace();
 	        throw new Exception();
 	    }
 	    finally{
@@ -158,7 +158,8 @@ public class DBoperator {
 		ResultSet resSet;
 		String sql="select "+s.select()+" from "+table;
 		if(!w.where().equals(""))
-			sql=sql+"where "+w.where();
+			sql=sql+" where "+w.where();
+		//System.out.println(sql);
 		if(ob!=null)
 		{
 			if(ob.obt==OrderType.ASC)
@@ -186,7 +187,7 @@ public class DBoperator {
 				result.add(m);
 			} 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		finally{
 			closeConn();
